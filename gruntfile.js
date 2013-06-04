@@ -14,6 +14,9 @@ module.exports = function(grunt){
 			}
 		},
 		jshint: {
+			options: {
+				evil: true
+			},
 			all: ['*.js', 'spec/*.js']
 		},
 		concat: {

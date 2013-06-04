@@ -1,3 +1,5 @@
+(function(factory){
+	'use strict';
 var memo = {};
 
 function parse(expression){
@@ -75,3 +77,14 @@ Watcher.prototype.digest = function(){
 };
 
 factory('Watcher', Watcher);
+})(function(name, object){
+	if(typeof define === 'function' && define.amd){
+		define(function(){
+			return object;
+		});
+	}else if(typeof window === 'object'){
+		window[name] = object;
+	}else{
+		module.exports = object;
+	}
+});
