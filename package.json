@@ -1,0 +1,21 @@
+{
+  "name": "watcher",
+  "version": "1.0.0",
+  "description": "Simple pub/sub pattern implementation",
+  "main": "watcher.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": "git@github.com:alexeyraspopov/watcher.git",
+  "author": "Alexey Raspopov",
+  "license": "MIT",
+  "readmeFilename": "readme.md",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jshint": "~0.5.4",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jasmine": "~0.4.2",
+    "grunt-contrib-clean": "~0.4.1"
+  }
+}
