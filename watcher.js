@@ -28,14 +28,19 @@ function Watcher(){
 }
 
 Watcher.prototype.watch = function(context, expression, callback){
-	var value = parse(expression),
-		watcher = {
-			value: value,
-			context: context,
-			last: value(context),
-			callback: callback,
-			expression: expression
-		};
+	var value, watcher;
+
+	value = typeof expression === 'function' ? function(){
+		return expression(context);
+	} : parse(expression);
+
+	watcher = {
+		value: value,
+		context: context,
+		last: value(context),
+		callback: callback || function(){},
+		expression: expression
+	};
 
 	watcher.callback(watcher.last);
 	this.watchers.push(watcher);

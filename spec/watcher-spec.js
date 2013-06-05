@@ -1,12 +1,15 @@
 describe('watcher', function(){
-	it('should be', function(){
-		expect(true).toBe(true);
+	var scope, firstCall;
+
+	beforeEach(function(){
+		scope = new Watcher();
+		firstCall = true;
 	});
 
 	it('should call callback immediately and each times after digest phase', function(){
 		var object = {
 				name: 'Alexey'
-			}, scope = new Watcher(), firstCall = true;
+			};
 
 		scope.watch(object, 'name', function(value, last){
 			if(firstCall){
@@ -29,7 +32,7 @@ describe('watcher', function(){
 				nested: {
 					animal: 'cat'
 				}
-			}, scope = new Watcher(), firstCall = true;
+			};
 
 		scope.watch(object, 'nested.animal', function(value){
 			if(firstCall){
@@ -43,5 +46,18 @@ describe('watcher', function(){
 		object.nested.animal = 'dog';
 
 		scope.digest();
+	});
+
+	it('should receive function as expression', function(){
+		var object = {
+				animal: 'cat'
+			};
+
+		scope.watch(object, function(context){
+			expect(context).toBe(object);
+			return 'value';
+		}, function(value){
+			expect(value).toBe('value');
+		});
 	});
 });
