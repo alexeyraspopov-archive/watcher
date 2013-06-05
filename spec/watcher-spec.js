@@ -6,9 +6,9 @@ describe('watcher', function(){
 	it('should call callback immediately and each times after digest phase', function(){
 		var object = {
 				name: 'Alexey'
-			}, scope = new Watcher(object), firstCall = true;
+			}, scope = new Watcher(), firstCall = true;
 
-		scope.watch('name', function(value, last){
+		scope.watch(object, 'name', function(value, last){
 			if(firstCall){
 				expect(value).toBe('Alexey');
 				expect(last).toBe();
@@ -29,9 +29,9 @@ describe('watcher', function(){
 				nested: {
 					animal: 'cat'
 				}
-			}, scope = new Watcher(object), firstCall = true;
+			}, scope = new Watcher(), firstCall = true;
 
-		scope.watch('nested.animal', function(value){
+		scope.watch(object, 'nested.animal', function(value){
 			if(firstCall){
 				expect(value).toBe('cat');
 				firstCall = false;

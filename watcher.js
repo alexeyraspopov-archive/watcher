@@ -22,17 +22,17 @@ function unwatch(watcher, watchers){
 	};
 }
 
-function Watcher(context){
-	this.context = context;
+function Watcher(){
 	this.watchers = [];
 	this.checking = false;
 }
 
-Watcher.prototype.watch = function(expression, callback){
+Watcher.prototype.watch = function(context, expression, callback){
 	var value = parse(expression),
 		watcher = {
 			value: value,
-			last: value(this.context),
+			context: context,
+			last: value(context),
 			callback: callback,
 			expression: expression
 		};
@@ -59,7 +59,7 @@ Watcher.prototype.digest = function(){
 
 		while(++index < length){
 			watcher = this.watchers[index];
-			value = watcher.value(this.context);
+			value = watcher.value(watcher.context);
 
 			if(value !== watcher.last){
 				watcher.callback(value, watcher.last);
@@ -76,6 +76,7 @@ Watcher.prototype.digest = function(){
 	this.checking = false;
 };
 
+Watcher.parse = parse;
 factory('Watcher', Watcher);
 })(function(name, object){
 	if(typeof define === 'function' && define.amd){
