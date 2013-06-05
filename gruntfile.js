@@ -21,7 +21,7 @@ module.exports = function(grunt){
 		},
 		concat: {
 			dist: {
-				src: ['src/prefix.js', 'src/<%= pkg.name %>.js', 'src/factory.js'],
+				src: ['helpers/prefix.js', 'src/<%= pkg.name %>.js', 'helpers/factory.js'],
 				dest: '<%= pkg.name %>.js'
 			}
 		},
