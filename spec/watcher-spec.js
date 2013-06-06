@@ -60,4 +60,20 @@ describe('watcher', function(){
 			expect(value).toBe('value');
 		});
 	});
+
+	it('should return function to unwatch expression', function(){
+		var object = {
+				animal: 'cat'
+			}, callCount = 0, unwatch;
+
+		unwatch = scope.watch(object, 'animal', function(value){
+			callCount++;
+		});
+
+		unwatch();
+		object.animal = 'dog';
+		scope.digest();
+
+		expect(callCount).toBe(1);
+	});
 });
