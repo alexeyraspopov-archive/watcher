@@ -31,6 +31,13 @@ module.exports = function(grunt){
 					'<%= pkg.name %>.min.js': ['<%= pkg.name %>.js']
 				}
 			}
+		},
+		copy: {
+			dist: {
+				files: [
+					{ expand: false, src: '<%= pkg.name %>.min.js', dest: 'index.js' }
+				]
+			}
 		}
 	});
 
@@ -39,7 +46,8 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.registerTask('test', ['clean', 'concat', 'jasmine']);
-	grunt.registerTask('default', ['clean', 'concat', 'jasmine', 'jshint', 'uglify']);
+	grunt.registerTask('default', ['clean', 'concat', 'jasmine', 'jshint', 'uglify', 'copy']);
 };

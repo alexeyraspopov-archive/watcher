@@ -36,7 +36,7 @@ Watcher.prototype.watch = function(context, expression, callback){
 		value: value,
 		context: context,
 		last: value(context),
-		callback: callback || function(){},
+		callback: callback,
 		expression: expression
 	};
 
