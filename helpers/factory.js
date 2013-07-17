@@ -3,9 +3,9 @@
 		define(function(){
 			return object;
 		});
-	}else if(typeof window === 'object'){
-		window[name] = object;
-	}else{
+	}else if(typeof module === 'object' && typeof module.exports === 'object'){
 		module.exports = object;
+	}else{
+		window[name] = object;
 	}
 });

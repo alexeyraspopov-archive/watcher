@@ -17,7 +17,7 @@ module.exports = function(grunt){
 			options: {
 				evil: true
 			},
-			all: ['*.js', 'spec/*.js']
+			all: ['<%= pkg.name %>.js', 'spec/*.js']
 		},
 		concat: {
 			dist: {
